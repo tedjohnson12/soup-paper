@@ -35,6 +35,9 @@ dependencies:
   #   - src/data/dataset_for_my_script.dat
   # src/tex/ms.tex:
   #   - src/tex/stylesheet.tex
+  src/scripts/instrument.py:
+    - src/tex/output/inst-*.txt
+  
 
 # Name of the `.tex` manuscript and corresponding `.pdf` article
 ms_name: ms
@@ -70,7 +73,7 @@ scripts:
 # Display of the `showyourwork` stamp on first page
 stamp:
   # Show the stamp?
-  enabled: true
+  enabled: False
   # Stamp angle in degrees
   angle: -20.0
   # Stamp size in inches

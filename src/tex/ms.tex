@@ -1,57 +1,113 @@
 % Define document class
-\documentclass[twocolumn]{aastex631}
+\documentclass[twocolumn]{aastex701}
 \usepackage{showyourwork}
+\usepackage{mhchem}
 
 % Begin!
 \begin{document}
 
+\newcommand{\refp}{(ref?)}
+\newcommand{\reft}{ref?}
+\newcommand{\oz}{O$_3$}
+
+\newcommand{\diam}{\variable{output/inst-diam.txt}}
+\newcommand{\lifetime}{\variable{output/inst-lifetime.txt}}
+\newcommand{\ucen}{\variable{output/inst-center_u.txt}}
+\newcommand{\bcen}{\variable{output/inst-center_b.txt}}
+\newcommand{\vcen}{\variable{output/inst-center_v.txt}}
+
+\newcommand{\uwidth}{\variable{output/inst-width_u.txt}}
+\newcommand{\bwidth}{\variable{output/inst-width_b.txt}}
+\newcommand{\vwidth}{\variable{output/inst-width_v.txt}}
+
+\newcommand{\uthrough}{\variable{output/inst-through_u.txt}}
+\newcommand{\bthrough}{\variable{output/inst-through_b.txt}}
+\newcommand{\vthrough}{\variable{output/inst-through_v.txt}}
+
+
 % Title
-\title{An open source scientific article}
+\title{The Stratospheric Ozone Ultraviolet Photometer (SOUP) Mission}
 
 % Author list
-\author{@tedjohnson12}
+\author{Ted Johnson}
+\affiliation{UNLV}
+\email{ted.johnson@unlv.edu}
 
 % Abstract with filler text
 \begin{abstract}
-    Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-    Ut purus elit, vestibulum ut, placerat ac, adipiscing vitae, felis.
-    Curabitur dictum gravida mauris, consectetuer id, vulputate a, magna.
-    Donec vehicula augue eu neque, morbi tristique senectus et netus et.
-    Mauris ut leo, cras viverra metus rhoncus sem, nulla et lectus vestibulum.
-    Phasellus eu tellus sit amet tortor gravida placerat.
-    Integer sapien est, iaculis in, pretium quis, viverra ac, nunc.
-    Praesent eget sem vel leo ultrices bibendum.
-    Aenean faucibus, morbi dolor nulla, malesuada eu, pulvinar at, mollis ac.
-    Curabitur auctor semper nulla donec varius orci eget risus.
-    Duis nibh mi, congue eu, accumsan eleifend, sagittis quis, diam.
-    Duis eget orci sit amet orci dignissim rutrum.
+    We present the Stratospheric Ozone Ultraviolet Photometer (SOUP) mission concept, a space telescope designed to detect the biosignature ozone in the upper atmospheres of rocky exoplanets. SOUP combines the sensitivity of transmission spectroscopy with the efficiency of a photometric survey by taking high-precision, full field-of-view images in three photometric bands.
 \end{abstract}
 
-% Main body with filler text
 \section{Introduction}
-\label{sec:intro}
+One of the most powerful methods for characterizing the composition of exoplanet atmospheres to date is transmission spectroscopy \citep[e.g.][]{garcia2022,may2023,moran2023,cadieux2024,fournier-tondreau2024}. Despite this technique's unique ability to probe the gasses in the upper atmospheres of a wide variety of exoplanets, its immense cost prevents its meaningful use on rocky, habitable-zone (HZ) exoplanets which would require hundreds of observations to reach the signal-to-noise ratio (SNR) required to detect a biosignature.
 
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-Ut purus elit, vestibulum ut, placerat ac, adipiscing vitae, felis.
-Curabitur dictum gravida mauris, consectetuer id, vulputate a, magna.
-Donec vehicula augue eu neque, morbi tristique senectus et netus et.
-Mauris ut leo, cras viverra metus rhoncus sem, nulla et lectus vestibulum.
-Phasellus eu tellus sit amet tortor gravida placerat.
-Integer sapien est, iaculis in, pretium quis, viverra ac, nunc.
-Praesent eget sem vel leo ultrices bibendum.
-Aenean faucibus, morbi dolor nulla, malesuada eu, pulvinar at, mollis ac.
-Curabitur auctor semper nulla donec varius orci eget risus.
-Duis nibh mi, congue eu, accumsan eleifend, sagittis quis, diam.
-Duis eget orci sit amet orci dignissim rutrum.
+Conversely, thousands\footnote{\url{https://exoplanetarchive.ipac.caltech.edu/docs/counts_detail.html}} of exoplanet have been found via the transit method because it relies on photometry -- a dedicated mission (e.g. Kepler \citep{borucki2004} or TESS \citep{winn2024}) can observe thousands of targets at once. I propose a new mission to combine the best elements of each technique in order to efficiently explore a whole population of Earth-like planets in search of the biosignature ozone. I call this mission the Stratospheric Ozone Ultraviolet Photometer, or SOUP. Figure \ref{fig:soup-spec} demonstrates the basic idea behind detecting \oz{} through photometry: if we measure the transit depth simultaneously in multiple bands, we can infer the presence of absorbing gasses in the atmosphere. When we chose these bands carefully, we can become sensitive to potential biosignatures such as \oz{}.
 
-Nam dui ligula, fringilla a, euismod sodales, sollici- tudin vel, wisi.
-Morbi auctor lorem non justo, nam lacus libero, pretium at, lobortis vitae.
-Donec aliquet, tortor sed accumsan bibendum, erat ligula aliquet magna.
-Morbi ac orci et nisl hendrerit mollis, suspendisse ut massa, cras nec ante.
-Pellentesque a nulla cum sociis natoque penatibus et magnis dis parturient.
-Aliquam tincidunt urna, nulla ullamcorper vestibulum turpis.
-Pellentesque cursus luctus mauris \citep{Luger2021}.
+\begin{figure}
+    \includegraphics[width=0.5\textwidth]{figures/spectrum.pdf}
+    \caption{Transmission spectra and band-integrated transit depths for two sets of potential SOUP targets. {\bf Top}: Earth-sized planet orbiting an M-dwarf at a distance of 10 parsecs from the solar system. The green ``Has \oz'' model has an ozone volume-mixing ratio (VMR) of $10^{-4}$. Both models include a background \ce{N2} atmosphere. {\bf Bottom}: Sub-Neptune orbiting a Sun-like star at a distance of 200 parsecs. Like the panel above, ``Has \oz'' means a VMR of $10^{-4}$, but the background gas in this case is \ce{H2}. In both panels, the planet has an isothermal 300 K atmosphere and an opaque surface at 1 bar. The noise in these models is calculated based on the number of transits observed over the \lifetime{}-year mission lifetime. The slope that appears in all spectra is due to scattering of the background gas and behaves predictably.}
+    \label{fig:soup-spec}
+    \script{spectrum.py}
+\end{figure}
 
-\bibliography{bib}
+\subsection{Ozone as a biosignature}
+
+\subsection{Abiotic Ozone}
+
+\subsection{Transit Spectroscopy in the Era of JWST}
+
+\subsection{Multiband Photometry}
+
+\section{Mission Design}
+
+\subsection{Science Goals}
+
+\subsubsection{Primary Goal: Detection of Ozone}
+
+\subsection{Secondary Goal: Atmosphere Detection}
+
+\subsection{Secondary Goal: Planet Discovery}
+
+\subsection{Secondary Goal: Stellar Characterization}
+
+\subsection{Secondary Goal: Transient Event Science}
+
+\subsection{Instrument}
+
+The SOUP spacecraft will consist of a \diam{} aperture mirror that feeds light through a series of dichromatic beam splitters. The first splitter reflects UV light through the U filter onto a detector. The transmitted light passes through a second splitter, which transmits light short of 500 nm. The reflected light passes through the V filter and transmitted light through the B filter, both beams landing on an optical detector. These three photometric bands are described in Table \ref{tab:bands}
+\begin{table}
+    \centering
+    \begin{tabular}{c|ccc}
+        \hline
+        Band & Center & Width & Throughput \\
+        \hline
+        U & \ucen & \uwidth & \uthrough \\
+        B & \bcen & \bwidth & \bthrough \\
+        V & \vcen & \vwidth & \vthrough \\ \hline \hline
+        
+    \end{tabular}
+    \caption{The SOUP photometric bands. The throughput column accounts of the efficiency of the optics and detector quantum efficiency averaged over the bandpass.}
+    \label{tab:bands}
+\end{table}
+
+\subsection{Orbit \& Logistics}
+
+\subsection{Targets}
+
+\subsection{Data Processing}
+
+\section{Mission Yield}
+
+\subsection{Ozone Detection}
+
+\subsection{Secondary Goals}
+
+\section{Budget}
+
+\section{Timeline}
+
+
+\bibliographystyle{aasjournal}
+\bibliography{vspec,soup}
 
 \end{document}
