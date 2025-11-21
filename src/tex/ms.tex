@@ -34,7 +34,8 @@
 
 % Author list
 \author{Ted Johnson}
-\affiliation{UNLV}
+\affiliation{Nevada Center for Astrophysics}
+\affiliation{Department of Physics and Astronomy, University of Nevada, Las Vegas}
 \email{ted.johnson@unlv.edu}
 
 % Abstract with filler text
@@ -73,19 +74,24 @@ Multi-wavelength photometry is not new to instrument design. For example, the ES
 \subsection{Science Goals}
 
 \subsubsection{Primary Goal: Detection of Ozone}
-\todo
+The SOUP mission detects ozone by targeting three specifically-chosen photometric bands for transit-depth observation. Two of these bands, U and V, are at wavelengths where ozone opacity is very high. The third band, V, is in a region of the spectrum with no ozone opacity and acts as a measure of the continuum with which the ozone opacity depths are compared.
 
-\subsection{Secondary Goal: Atmosphere Detection}
-\todo
+Ozone opacity is strongest in the U band, but the majority of nearby stars are low-mass and cool, and so they do not emit very much UV light. Therefore, the V band is necessary to characterize ozone in M-dwarf systems. These three bands are chosen to maximize the ozone sensitivity while minimizing sensitivity to potential background gases. Figure \ref{fig:gas} shows that trace amounts of ozone dominate the transit signal for a variety of gases. This is expected -- optical wavelengths fall in an energy regime with few molecular transitions.
+
+\begin{figure}
+    \includegraphics[width=0.5\textwidth]{figures/gases.pdf}
+    \caption{Trace ozone signal for a variety of background gasses. At optical and near-UV wavelengths, the dominant opacities are just ozone and Rayleigh scattering, with only minor contributions from background gases. In all models the \oz{} VMR is $10^{-4}$} and the planet is a HZ M-Earth at 10 pc.
+\end{figure}
 
 \subsection{Secondary Goal: Planet Discovery}
-\todo
 
-\subsection{Secondary Goal: Stellar Characterization}
-\todo
+A byproduct of searching transiting planets for ozone is that many transiting planets will be discovered that are not our primary targets. The Kepler mission discovered over 4000 planets, the vast majority of which have orbital periods less than 100 days \citep{lissauer2023}. SOUP's field-of-view is four times Kepler's, so we can expect to find $\sim 16\,000$ planets in the first 4 years of observations. The mission, however will last for \lifetime years -- enough time to increase sensitivity to longer-period transiting planets in that field. \citet{lissauer2023} was able to calculate statistically significant planet frequencies for Earth-sized planets out to period of 128 days. With a 2.5 times longer baseline, we can expect to do similar statistics on small rocky planets out to periods of about 1 year. Finding more long period (and high angular separation) planets provides an opportunity to investigate potential targets for the upcoming Habitable Worlds Observatory (WHO), which will focus mainly on Earth-sized planets around Sun-like stars within 30 pc \citep[see][]{tuchow2024a,tuchow2025}.
 
-\subsection{Secondary Goal: Transient Event Science}
-\todo
+% \subsection{Secondary Goal: Stellar Characterization}
+% \todo
+
+% \subsection{Secondary Goal: Transient Event Science}
+% \todo
 
 \subsection{Instrument}
 
