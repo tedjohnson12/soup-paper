@@ -40,7 +40,12 @@
 
 % Abstract with filler text
 \begin{abstract}
-    We present the Stratospheric Ozone Ultraviolet Photometer (SOUP) mission concept, a space telescope designed to detect the biosignature ozone in the upper atmospheres of rocky exoplanets. SOUP combines the sensitivity of transmission spectroscopy with the efficiency of a photometric survey by taking high-precision, full field-of-view images in three photometric bands.
+    \begin{minipage}{0.6\textwidth}
+            We present the Stratospheric Ozone Ultraviolet Photometer (SOUP) mission concept, a space telescope designed to detect the biosignature ozone in the upper atmospheres of rocky exoplanets. SOUP combines the sensitivity of transmission spectroscopy with the efficiency of a photometric survey by taking high-precision, full field-of-view images in three photometric bands.
+    \end{minipage}\hspace{5mm}
+    \begin{minipage}{0.25\textwidth}
+        \includegraphics[width=\textwidth]{soup.pdf}
+    \end{minipage}
 \end{abstract}
 
 \section{Introduction}
@@ -71,6 +76,7 @@ Multi-wavelength photometry is not new to instrument design. For example, the ES
 
 \section{Mission Design}
 
+
 \subsection{Science Goals}
 
 \subsubsection{Primary Goal: Detection of Ozone}
@@ -79,8 +85,9 @@ The SOUP mission detects ozone by targeting three specifically-chosen photometri
 Ozone opacity is strongest in the U band, but the majority of nearby stars are low-mass and cool, and so they do not emit very much UV light. Therefore, the V band is necessary to characterize ozone in M-dwarf systems. These three bands are chosen to maximize the ozone sensitivity while minimizing sensitivity to potential background gases. Figure \ref{fig:gas} shows that trace amounts of ozone dominate the transit signal for a variety of gases. This is expected -- optical wavelengths fall in an energy regime with few molecular transitions.
 
 \begin{figure}
+    \centering
     \includegraphics[width=0.5\textwidth]{figures/gases.pdf}
-    \caption{Trace ozone signal for a variety of background gasses. At optical and near-UV wavelengths, the dominant opacities are just ozone and Rayleigh scattering, with only minor contributions from background gases. In all models the \oz{} VMR is $10^{-4}$} and the planet is a HZ M-Earth at 10 pc.
+    \caption{Trace ozone signal for a variety of background gasses. At optical and near-UV wavelengths, the dominant opacities are just ozone and Rayleigh scattering, with only minor contributions from background gases. In all models the \oz{} VMR is $10^{-4}$ and the planet is a HZ M-Earth at 10 pc.}
 \end{figure}
 
 \subsection{Secondary Goal: Planet Discovery}
@@ -162,10 +169,72 @@ Each full CCD image contains 2.1 GB of data -- an amount unfeasible to downlink 
 Once on the ground, the lightcurves will be corrected for instrumental and astrophysical variability using the same differential photometry system that has been so successful for Kepler. Standard stars will be selected as targets and the data will be continuously calibrated using these standards. Importantly, each band will be corrected independently to avoid bias.
 
 \section{Budget}
-\todo
+The SOUP budget is summarized in Table \ref{tab:budget}.
+
+\begin{table}
+    \centering
+    \begin{tabular}{lc}
+        \hline
+        Item & Cost \\
+        \hline\hline
+        Instruments & 10 \\
+        Spacecraft & 80\\
+        Launch Vehicle & 100 \\
+        Science Team & 20\\
+        Operation & 40\\
+        \hline
+        Subtotal & 250 \\
+        30\% Margin 75& \\
+        \hline
+        {\bf Total} & 325\\
+        \hline \hline
+        Extended Mission & $2.5\;\mathrm{yr^{-1}}$
+    \end{tabular}
+    \caption{SOUP Budget Summary. Costs given in millions of \$US.}
+    \label{tab:budget}
+\end{table}
+
+\subsection{Budget Justification}
+
+This budget justification is largely based on peer missions Kepler and TESS, and an analysis of space telescope costs by H. Philip Stahl at NASA MSFC\footnote{\url{https://ntrs.nasa.gov/api/citations/20110015780/downloads/20110015780.pdf}}.
+
+\subsubsection{Instruments}
+A primary advantage of the SOUP strategy is to use technology that is already mature. For space telescopes, the cost of a mission is proportional to the technology readiness level (TRL) to the power of 0.9. SOUP relies on detector technology matured by Kepler and optical and near-UV dichroics that can be manufactured at low cost. Therefore, our \$10M instrument cost is reasonable.
+
+\subsubsection{Spacecraft}
+The SOUP spacecraft must be large to host both the \diam{} mirror and the three sets of optical tracks and detector arrays. Additionally, the Earth-trailing heliocentric orbit will require a large high-gain antenna in order to communicate with the Deep Space Network (DSN). Spacecraft assembly is generally 25\% of mission cost. We estimate a cost of \$80M for the SOUP spacecraft.
+
+\subsubsection{Launch Vehicle}
+With a \diam{} mirror and large spacecraft requirement, SOUP is significanlty more massive than Kepler, but not as massive as larger-aperture multi-instrument observatories like the Hubble Space Telescope. However, the requirement to escape the Earth's gravitational well requires more fuel per kg than HST's low-Earth orbit. Therefore, we adopt the geometric mean of the two observatories' launch costs of \$100M.
+
+\subsubsection{Science Team}
+The science budget's primary goal is to fund the team that analyzes SOUP's data and validates any discoveries the observatory makes. Due to the high data volume expected, this team's budget will be on the order of \$2M yr$^{-1}$. Over the course of the primary mission, this cost is \$20M.
+
+\subsubsection{Mission Operations}
+The SOUP spacecraft will not be serviceable, but the length of the primary mission will still require a relatively high operations budget. We predict a cost of \$40M over the \lifetime year primary mission.  
+
+\subsubsection{Extended Mission}
+We propose that the SOUP mission could be extended at a reduced cost of $\$ 2.5 \mathrm{M~yr^{-1}}$ with the aim of discovering long-period exoplanets that require a long baseline. The length of this primary mission will be determined by the observatories continued ability to downlink data to Earth as it drifts further away in its orbit.
 
 \section{Timeline}
-\todo
+The SOUP timeline is as follows:
+
+% \begin{center}
+%     \begin{tabular}{l}
+\vspace{2mm}
+\noindent
+        {\em 2026} \dotfill Propose Mid-sized Explorer-class mission\\
+        {\em 2027 Q1--2} \dotfill Optics bench testing and development \\
+        {\em 2027 Q1--2} \dotfill Primary mirror design and development \\
+        {\em 2027 Q3} \dotfill Final instrument design \\
+        {\em 2028 Q1--2} \dotfill Spacecraft design \\
+        {\em 2028 Q3-2029 Q1} \dotfill Spacecraft assembly \\
+        {\em 2029 Q3} \dotfill Launch \\
+        {\em 2029 Q4--2030 Q1} \dotfill Commissioning \\
+        {\em 2030--2040} \dotfill Primary mission \\
+        {\em 2040--\phantom{2050}} \dotfill Extended mission\\
+%     \end{tabular}
+% \end{center}
 
 
 \bibliographystyle{aasjournal}
