@@ -8,7 +8,11 @@ from core import Bandpass
 import paths
 
 MISSION_LIFE = 10 * u.yr
-APERTURE_SIZE = 3 * u.m
+APERTURE_SIZE = 2 * u.m
+FOV = (48 * u.deg)**2
+
+CCD_PIX = 1024 * 2200
+N_CCD = 42 * 3
 
 FILTER_U = Bandpass(
     center=0.255 * u.um,
@@ -47,4 +51,8 @@ if __name__ == '__main__':
     write_variable('center_v',f'{FILTER_V.center:latex}')
     write_variable('width_v',f'{FILTER_V.width:latex}')
     write_variable('through_v', f'{FILTER_V.throughput:.2f}')
+    
+    write_variable('fov',f'{FOV:latex}')
+    
+    print(f'Image size in Gb: {CCD_PIX * N_CCD * 8 / 1024 / 1024 / 1024}')
     

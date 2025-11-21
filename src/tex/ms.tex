@@ -9,6 +9,7 @@
 \newcommand{\refp}{(ref?)}
 \newcommand{\reft}{ref?}
 \newcommand{\oz}{O$_3$}
+\newcommand{\todo}{\textcolor{orange}{{\bf TODO}}}
 
 \newcommand{\diam}{\variable{output/inst-diam.txt}}
 \newcommand{\lifetime}{\variable{output/inst-lifetime.txt}}
@@ -23,6 +24,9 @@
 \newcommand{\uthrough}{\variable{output/inst-through_u.txt}}
 \newcommand{\bthrough}{\variable{output/inst-through_b.txt}}
 \newcommand{\vthrough}{\variable{output/inst-through_v.txt}}
+
+\newcommand{\salgamma}{\variable{output/targets-gamma.txt}}
+\newcommand{\fov}{\variable{output/inst-fov.txt}}
 
 
 % Title
@@ -45,32 +49,43 @@ Conversely, thousands\footnote{\url{https://exoplanetarchive.ipac.caltech.edu/do
 
 \begin{figure}
     \includegraphics[width=0.5\textwidth]{figures/spectrum.pdf}
-    \caption{Transmission spectra and band-integrated transit depths for two sets of potential SOUP targets. {\bf Top}: Earth-sized planet orbiting an M-dwarf at a distance of 10 parsecs from the solar system. The green ``Has \oz'' model has an ozone volume-mixing ratio (VMR) of $10^{-4}$. Both models include a background \ce{N2} atmosphere. {\bf Bottom}: Sub-Neptune orbiting a Sun-like star at a distance of 200 parsecs. Like the panel above, ``Has \oz'' means a VMR of $10^{-4}$, but the background gas in this case is \ce{H2}. In both panels, the planet has an isothermal 300 K atmosphere and an opaque surface at 1 bar. The noise in these models is calculated based on the number of transits observed over the \lifetime{}-year mission lifetime. The slope that appears in all spectra is due to scattering of the background gas and behaves predictably.}
+    \caption{Transmission spectra and band-integrated transit depths for two sets of potential SOUP targets. {\bf Top}: Earth-sized planet orbiting an M-dwarf at a distance of 10 parsecs from the solar system. The green ``Has \oz'' model has an ozone volume-mixing ratio (VMR) of $10^{-4}$. Both models include a background \ce{N2} atmosphere. {\bf Bottom}: Sub-Neptune orbiting a Sun-like star at a distance of 200 parsecs. Like the panel above, ``Has \oz'' means a VMR of $10^{-4}$, but the background gas in this case is \ce{H2}. In both panels, the planet has an isothermal 300 K atmosphere and an opaque surface at 1 bar. The noise in these models is calculated based on the number of transits observed over the \lifetime{}-year mission lifetime. The slope that appears in all spectra is due to scattering of the background gas and behaves predictably. Spectra produced by the Planetary Spectrum Generator \citep{villanueva2018}.}
     \label{fig:soup-spec}
     \script{spectrum.py}
 \end{figure}
 
 \subsection{Ozone as a biosignature}
+Ozone on Earth is primarily produced as a photochemical byproduct of molecular oxygen (\ce{O2}), and as an indicator of biotically produced oxygen it has been discussed as a molecule of significant interest for the future Habitable Worlds Observatory \citep[see][]{latouf2024a}. Specifically, ozone produces strong absorption even at trace abundance, and is believed to be {\em more} detectable on planets with high altitude clouds that otherwise obscure molecular signatures from reaching astronomer's telescopes \citep{kofman2024}. 
 
 \subsection{Abiotic Ozone}
+Despite being an indicator of biotic oxygen, ozone can also be produced when geologic processes produce \ce{O2} in small amounts. \citet{domagal-goldman2014} found that detectable levels of \ce{O3} and \ce{CH4} can coexist in some abiotic scenarios. Those authors suggest that an ozone detection is not necessarily a biosignature, but that follow-up observations at infrared wavelengths could resolve that degeneracy.
 
-\subsection{Transit Spectroscopy in the Era of JWST}
+\subsection{Transit Spectroscopy in the Era of JWST \& HST}
+Review of James Webb Space Telescope (JWST) rocky planet transit spectroscopy by \citet{kreidberg2025} found that JWST had successfully detected signals on the order of $\sim3$ scale heights ($H$). Ozone does have an absorption feature at $9.5\,\mathrm{\mu m}$, well within the MIRI Low Resolution Spectroscopy (LRS) bandpass, that is strong enough to produce the $5 H$ signal that \citeauthor{kreidberg2025} argue should be the standard for atmosphere detection. However, observation time limits (to, at maximum, several dozen transits) mean that there are very few targets where a low-enough signal-to-noise ratio (SNR) could be achieved to make this detection feasible.
+
+The Hubble Space Telescope (HST) similarly has been used to observe planetary transits, but at UV, optical, and near-infrared wavelengths \citep[for examples, see][, respectively]{behr2025,lothringer2018,fu2017}. However, it mainly looked at giant planets because of limited observing time. 
 
 \subsection{Multiband Photometry}
+Multi-wavelength photometry is not new to instrument design. For example, the ESA's Euclid mission \citep{euclidcollaboration2025} will include four photometric bands between 0.5 and $2\,\mathrm{\mu m}$. The GAIA mission \citet{gaiacollaboration2016} has performed a three-band photometric survey of the whole sky out to 20$^\text{th}$ magnitude in its G band. JWST's NIRCam instrument \citep{rieke2005} can take simultaneous short ($0.6-2.3\,\mathrm{\mu m}$) and long ($2.4-5.0\,\mathrm{\mu m}$) images because of a dichroic mirror in its optical path.
 
 \section{Mission Design}
 
 \subsection{Science Goals}
 
 \subsubsection{Primary Goal: Detection of Ozone}
+\todo
 
 \subsection{Secondary Goal: Atmosphere Detection}
+\todo
 
 \subsection{Secondary Goal: Planet Discovery}
+\todo
 
 \subsection{Secondary Goal: Stellar Characterization}
+\todo
 
 \subsection{Secondary Goal: Transient Event Science}
+\todo
 
 \subsection{Instrument}
 
@@ -90,21 +105,61 @@ The SOUP spacecraft will consist of a \diam{} aperture mirror that feeds light t
     \label{tab:bands}
 \end{table}
 
+The SOUP field of view is approximately four times that of Kepler, so to achieve similar angular resolution, the detector array requires $384\; 1024~\times~2200$ pixel CCD detectors -- 128 for each band. These are arranged so that the arrays are approximately square.
+
 \subsection{Orbit \& Logistics}
 
+Similar to the Kepler spacecraft \citep{borucki2004}, the SOUP observatory will be launched into a heliocentric orbit that trails Earth. A trailing orbit is preferable to low-Earth-orbit because it allows the FOV to be observed continuously and it removes the potential for day/night airglow cycles to contaminate the timeseries data.
+
 \subsection{Targets}
+Before choosing a specific field for the SOUP mission, I consider an idealized ``typical'' field. Assume the density of stars ($\rho$) is constant and approximately $0.05 \; \mathrm{{M_{\odot}}~{pc^{-3}}}$. For a field-of-view (FOV) $\Omega$ and distance $d$, the enclosed stellar mass is
+\begin{align}
+    \label{eq:mtot}
+    M_\text{tot} = \Omega d^3 \rho \, .
+\end{align}
+
+The Salpeter mass function tells us that the number of stars with masses between $m$ and $m+dm$ is \citep{salpeter1955}
+\begin{align}
+    N\,dm = A~m^{-\alpha}~dm\, ,
+\end{align}
+where $m\equiv M/\mathrm{M_\odot}$ and $\alpha$ was measured to be 2.35. We normalize this function by assuming the total mass from equation (\ref{eq:mtot}) and considering stars from $0.1-2\; \mathrm{M_\odot}$. We find
+\begin{align}
+    A = \salgamma~\Omega ~d^3~\rho~\mathrm{M_\odot}^{-1}\, ,
+\end{align}
+and
+\begin{align}
+    N\,dm = \salgamma~\Omega ~d^3 \rho~\mathrm{M_\odot}^{-1} ~m^{-\alpha}\, .
+\end{align}
+
+The number of stars within a distance $d$ that have masses greater than $m_0$ is then
+\begin{align}
+    N(m>m_0) &= \salgamma~\Omega~d^3~\rho~\int_{m_0}^2 m^{-\alpha} dm \\
+    &= \salgamma~\Omega~d^3~\rho~ \frac{2^{1-\alpha} - m_0^{1-\alpha}}{1-\alpha}\, . \\
+\end{align}
+
+\begin{figure}
+    \includegraphics[width=0.5\textwidth]{figures/distance.pdf}
+    \caption{Detectability of stratospheric ozone as a function of distance and host star spectral type. $\chi^2_\text{red}$ measures the mismatch between simulated measurements with and without ozone, with $\chi^2_\text{red} > 3$ signifying a statistically significant difference between the two models. Stellar spectral types are varied from very cool M8 (similar to TRAPPIST-1) to hot and massive A0. The G2 star is solar-like. The two planetary models considered are HZ Super-Earth-like ($1.5\;\mathrm{R_\oplus}$), with an \ce{N2} atmosphere, and a HZ Neptune, with an \ce{H2} atmosphere. The small signals produced by the Earth-sized planet make ozone detectable only out to 20 pc for M5 stars, whereas habitable Neptunes may host detectable ozone out to 1000 pc for all stellar types.}
+    \label{fig:distance}
+    \script{distance.py}
+\end{figure}
+
+The ratio between signal (determined by planet size) and noise (determined by the number of stellar photons received) determines detectability, and so, to determine the number of suitable targets we can ask: For planet scenario X, at what distance does ozone become undetectable around a star of mass $M$? And how many of those stars are there? Figure \ref{fig:distance} shows that We are sensitive to super-Earths out to 20 pc and Neptunes to 1000 pc, regardless of stellar type. There are about 0.3 targets $\mathrm{deg}^{-1}$ within 20 pc and 34,000 targets $\mathrm{deg}^{-1}$ within 1000 pc. It is safe to assume that the fraction of HZ planets which transit their star is on the order of 1\%, meaning that with a TESS-like FOV of \fov{}, we can expect to constrain ozone on $\sim 6$ super-Earths within 20 pc. At the same time, that FOV contains over 7 million stars within 1000 pc for characterization of HZ Neptune-sized planets. \citet{lissauer2023} used Kepler data to find that about 10\% of stars host a $2-4\;\mathrm{R_\oplus}$ planet with instellation similar to Earth, and so we can expect to find $\sim 7000$ transiting potentially-habitable Neptunes and sub-Neptunes in our FOV.
+
+
+
 
 \subsection{Data Processing}
 
-\section{Mission Yield}
+Each full CCD image contains 2.1 GB of data -- an amount unfeasible to downlink from a spacecraft in a high cadence. Similar to Kepler, SOUP will process the raw data on board the spacecraft and downlink lightcurves for pre-selected targets. With 7 million potential targets and a 15-minute cadence, the bandwidth required to downlink the processed lightcurves is 62 kBi/s.
 
-\subsection{Ozone Detection}
-
-\subsection{Secondary Goals}
+Once on the ground, the lightcurves will be corrected for instrumental and astrophysical variability using the same differential photometry system that has been so successful for Kepler. Standard stars will be selected as targets and the data will be continuously calibrated using these standards. Importantly, each band will be corrected independently to avoid bias.
 
 \section{Budget}
+\todo
 
 \section{Timeline}
+\todo
 
 
 \bibliographystyle{aasjournal}
